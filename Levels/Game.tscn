@@ -1,0 +1,261 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/IconPackAndelRodis/IconPackByAndelRodis/pngonebyone/menu.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Fadeout.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Fonts/Born2bSportyV2 (1).ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Fonts/ka1.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Sprites/IconPackAndelRodis/IconPackByAndelRodis/pngonebyone/playbuttonpdn.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/stars.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 360, 640 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 13.5289, 0.248596 )
+
+[sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 12.4455, 422.875 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 80
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 64
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 50
+outline_size = 3
+outline_color = Color( 0.67451, 0, 0.839216, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=8]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Game" type="Node2D"]
+position = Vector2( 122, 291 )
+script = ExtResource( 3 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2( -118, -294 )
+shape = SubResource( 1 )
+action = "Tap"
+
+[node name="Floor" type="Area2D" parent="."]
+position = Vector2( 301.425, 886.016 )
+scale = Vector2( 3.771, 3.258 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -58.8955, 30.9535 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -51.479, -475.752 )
+shape = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 612.582, 610.628 )
+
+[node name="destroy" type="Area2D" parent="."]
+position = Vector2( -181.019, -164.049 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="destroy"]
+position = Vector2( -166.301, 62.4718 )
+scale = Vector2( 0.48, 0.439996 )
+shape = SubResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 346.513
+margin_top = 59.0
+margin_right = 381.513
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Node2D" parent="CanvasLayer"]
+visible = false
+position = Vector2( -194.341, -129 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Tap_Reset" type="Button" parent="CanvasLayer/GameOver"]
+pause_mode = 2
+margin_left = 301.0
+margin_top = 438.634
+margin_right = 913.0
+margin_bottom = 1044.63
+rect_scale = Vector2( 0.2, 0.2 )
+disabled = true
+action_mode = 0
+icon = ExtResource( 7 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CanvasLayer/GameOver"]
+margin_left = 353.18
+margin_top = 302.0
+margin_right = 388.18
+margin_bottom = 382.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Max_Poits" type="Label" parent="CanvasLayer/GameOver"]
+margin_left = 355.333
+margin_top = 655.0
+margin_right = 394.333
+margin_bottom = 735.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="CanvasLayer/GameOver"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 139.0
+margin_top = 110.0
+margin_right = 605.0
+margin_bottom = 182.0
+custom_fonts/font = SubResource( 6 )
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Label" parent="CanvasLayer/GameOver"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 301.0
+margin_top = 260.0
+margin_right = 618.0
+margin_bottom = 332.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 6 )
+text = "Points "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points2" type="Label" parent="CanvasLayer/GameOver"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 263.0
+margin_top = 620.919
+margin_right = 784.0
+margin_bottom = 692.919
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 6 )
+text = "Max  Points "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NovoRecord" type="Node2D" parent="CanvasLayer"]
+visible = false
+position = Vector2( -194.341, -129 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="Label" type="Label" parent="CanvasLayer/NovoRecord"]
+margin_left = 176.449
+margin_top = 207.12
+margin_right = 526.449
+margin_bottom = 287.12
+rect_rotation = 55.1
+custom_fonts/font = SubResource( 7 )
+text = "New Record"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stars" type="Sprite" parent="CanvasLayer/NovoRecord/Label"]
+position = Vector2( 6.64352, 10.9413 )
+rotation = 0.715585
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )
+hframes = 2
+
+[node name="Recorde_anim" type="AnimationPlayer" parent="CanvasLayer/NovoRecord"]
+pause_mode = 2
+anims/Record = SubResource( 8 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 103.299, 396.114 )
+scale = Vector2( 2, 2 )
+
+[node name="Timer_Spawn_Clouds" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 773.667, -201.309 )
+
+[node name="Menu" type="Sprite" parent="."]
+position = Vector2( -61.5461, 922.196 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+pause_mode = 2
+margin_left = -125.122
+margin_top = 864.714
+margin_right = 4.87817
+margin_bottom = 984.714
+action_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="testezin" type="Label" parent="."]
+visible = false
+margin_left = 451.352
+margin_top = -181.0
+margin_right = 491.352
+margin_bottom = -167.0
+rect_scale = Vector2( 3.56, 5.12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer2" parent="." instance=ExtResource( 4 )]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 9 )]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/GameOver/Tap_Reset" to="." method="_on_Tap_Reset_pressed"]
+[connection signal="timeout" from="Timer_Spawn_Clouds" to="." method="_on_Timer_Spawn_Clouds_timeout"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

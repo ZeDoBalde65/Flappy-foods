@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rar.wav-4a5f016b8a474ee0d00132579a5e4bef.sample"
+
+[deps]
+
+source_file="res://Fonts/rar.wav"
+dest_files=[ "res://.import/rar.wav-4a5f016b8a474ee0d00132579a5e4bef.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=1
